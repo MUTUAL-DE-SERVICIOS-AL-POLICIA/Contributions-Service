@@ -6,7 +6,7 @@ import { ContributionsService } from './contributions.service';
 export class ContributionsController {
   constructor(private readonly contributionsService: ContributionsService) {}
 
-  @MessagePattern('Contributions.findByAffiliateId')
+  @MessagePattern('contributions.findByAffiliateId')
   findByAffiliateId(@Payload() affiliateId: number) {
     return this.contributionsService.findByAffiliateId(affiliateId);
   }
