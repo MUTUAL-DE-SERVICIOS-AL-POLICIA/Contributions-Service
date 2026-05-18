@@ -1,5 +1,5 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { LiquidationContribution } from './';
 @Entity({ schema: 'public', name: 'contributions', synchronize: false })
 export class Contribution {
   @PrimaryGeneratedColumn({ type: 'bigint' })
@@ -94,4 +94,7 @@ export class Contribution {
 
   @Column({ name: 'contribution_type_mortuary_id', type: 'bigint', nullable: true })
   contributionTypeMortuaryId: number;
+
+  @OneToMany(() => LiquidationContribution, (liquidationContribution) => liquidationContribution.contribution)
+  liquidationContributions: LiquidationContribution[];
 }

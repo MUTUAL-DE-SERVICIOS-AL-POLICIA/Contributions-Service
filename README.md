@@ -18,30 +18,28 @@ Maneja datos como:
 
 ```
 src/
-├── app.module.ts                 # Módulo raíz que organiza todos los módulos de la aplicación
-├── main.ts                       # Punto de entrada principal de la aplicación
+├── app.module.ts                 # Módulo raíz que integra todos los módulos
+├── main.ts                       # Punto de entrada - Configuración de microservicio NATS
 ├── contributions/                # Módulo principal de gestión de contribuciones
-│   ├── controllers/              # Controladores que manejan rutas de contribuciones
-│   ├── services/                 # Servicios con la lógica de cálculo y validación
-│   └── dto/                      # Data Transfer Objects para validación de datos
-├── payments/                     # Módulo de procesamiento de pagos
-│   ├── controllers/              # Controladores de pagos
-│   ├── services/                 # Servicios de transacciones y confirmación
-│   └── dto/                      # Validación de datos de pagos
-├── accounting/                   # Módulo de contabilidad y reportes financieros
-│   ├── controllers/              # Controladores de reportes
-│   ├── services/                 # Servicios de generación de reportes
-│   └── dto/                      # Validación para auditoría
-├── common/                       # Código compartido reutilizable en toda la aplicación
-│   ├── filters/                  # Filtros para manejo de excepciones
-│   ├── guards/                   # Guards para proteger rutas
-│   └── decorators/               # Decoradores personalizados
-├── config/                       # Archivos de configuración (BD, variables ENV, etc)
-│   └── database.config.ts        # Configuración específica de PostgreSQL
-├── database/                     # Gestión de base de datos, migraciones y datos iniciales
-│   ├── migrations/               # Migraciones TypeORM para cambios en el esquema BD
-│   ├── seeds/                    # Seeders para llenar BD con datos de prueba
-│   └── entities/                 # Entidades (modelos) que representan tablas de la BD
+│   ├── contributions.controller.ts  # Controlador que expone patrones de mensajes NATS
+│   ├── contributions.service.ts     # Lógica de negocio para contribuciones
+│   ├── contributions.module.ts      # Módulo principal
+│   └── entities/
+│       └── contribution.entity.ts   # Entidad TypeORM de Contribution
+├── common/                       # Código compartido reutilizable
+│   ├── common.module.ts          # Módulo global con configuración de NATS
+│   ├── dtos/                     # Data Transfer Objects
+│   ├── exceptions/               # Excepciones personalizadas
+│   ├── nats/                     # Servicio de NATS
+│   │   └── nats.service.ts       # Servicio para interacción con NATS
+│   └── index.ts                  # Exportaciones
+├── config/                       # Configuración de aplicación
+│   ├── envs.ts                   # Variables de entorno validadas con Joi
+│   ├── services.ts               # Constantes de servicios
+│   └── index.ts                  # Exportaciones
+└── database/                     # Gestión de base de datos
+    ├── database.module.ts        # Módulo TypeORM
+    └── data-source.ts            # Configuración de conexión a PostgreSQL
 ```
 
 ---

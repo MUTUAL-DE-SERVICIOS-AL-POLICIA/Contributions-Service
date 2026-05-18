@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { SeederOptions } from 'typeorm-extension';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
@@ -18,7 +19,8 @@ export const options: DataSourceOptions & SeederOptions = {
   seedTracking: true,
 
   schema: DbEnvs.dbSchema,
-  migrations: ['dist/database/migrations/**/*{.ts,.js}'],
+  migrations: ['src/database/migrations/**/*{.ts,.js}'],
+  migrationsTableName: 'migrations',
 };
 
 export default new DataSource(options);
