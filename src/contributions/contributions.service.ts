@@ -32,7 +32,7 @@ export class ContributionsService {
       return contributions;
     } catch (error) {
       throw new RpcException({
-        message: `Error al consultar contribuciones: ${error.message}`,
+        message: `Error al consultar contribuciones: ${error}`,
         code: 500
       });
     }
